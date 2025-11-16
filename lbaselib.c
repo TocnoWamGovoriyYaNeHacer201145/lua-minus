@@ -51,7 +51,7 @@ static int luaB_return_one (lua_State *L) {
 
 static int luaB_return_zero(lua_State *L) {
   lua_pushinteger(L, 0);
-  return 1;
+  return 0;
 }
 
 
