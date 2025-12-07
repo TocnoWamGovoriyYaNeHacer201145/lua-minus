@@ -8,11 +8,15 @@ but maybe they will be useful to someone. I originally wanted to make [C--](http
 # What it adds
 Here are all the additions (it's better to stop reading the additions here, otherwise the 10 IQ of your brain will simply evaporate)
 ```
-ReturnZero() # Returns zero
-ReturnOne() # Returns one
-StuckLoop() # Don't add it to the code, there will be bad consequences
-ReturnNULL() # Returns NULL (or nil in lua)
-RandomSymbols() # A copy of the RandomSymbols function that was in U#
+ReturnZero() // Returns zero
+ReturnOne() // Returns one
+StuckLoop() // Don't add it to the code, there will be bad consequences
+ReturnNULL() // Returns NULL (or nil in lua)
+RandomSymbols() // A copy of the RandomSymbols function that was in U#
+private name = "Ben" // private instead of local, and public instead of global
+func greet(name)
+  print("Hello, " ..name)
+end
 ```
 
 ### License
