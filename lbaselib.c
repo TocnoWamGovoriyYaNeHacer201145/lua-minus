@@ -574,8 +574,8 @@ static const luaL_Reg base_funcs[] = {
   {"tostring", luaB_tostring},
   {"type", luaB_type},
   {"xpcall", luaB_xpcall},
-  {"StuckLoop", luaB_stuckLoop},
-  {"RandomSymbols", luaB_randomString},
+  {"stuckloop", luaB_stuckLoop},
+  {"randomstring", luaB_randomString},
   /* placeholders */
   {LUA_GNAME, NULL},
   {"_VERSION", NULL},
