@@ -38,23 +38,6 @@ static int luaB_print (lua_State *L) {
 }
 
 
-static const char *luaB_abs_null (lua_State *L) {
-  (void)L;
-  lua_pushnil(L);
-  return 1;
-}
-
-static int luaB_return_one (lua_State *L) {
-  lua_pushinteger(L, 1);
-  return 1;
-}
-
-static int luaB_return_zero(lua_State *L) {
-  lua_pushinteger(L, 0);
-  return 0;
-}
-
-
 static int luaB_stuckLoop (lua_State *L) {
   int n = lua_gettop(L);
   while (1) {
@@ -65,7 +48,7 @@ static int luaB_stuckLoop (lua_State *L) {
 }
 
 
-static int luaB_randomSymbols(lua_State *L) {
+static int luaB_randomString(lua_State *L) {
   const char *symbols = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz!@#$%^&*()_+-=[]{}|;:,.<>?/~`";
   size_t symbols_len = strlen(symbols);
   static int seeded = 0;
@@ -591,11 +574,8 @@ static const luaL_Reg base_funcs[] = {
   {"tostring", luaB_tostring},
   {"type", luaB_type},
   {"xpcall", luaB_xpcall},
-  {"ReturnZero", luaB_return_zero},
-  {"ReturnOne", luaB_return_one},
   {"StuckLoop", luaB_stuckLoop},
-  {"ReturnNULL", luaB_abs_null},
-  {"RandomSymbols", luaB_randomSymbols},
+  {"RandomSymbols", luaB_randomString},
   /* placeholders */
   {LUA_GNAME, NULL},
   {"_VERSION", NULL},
