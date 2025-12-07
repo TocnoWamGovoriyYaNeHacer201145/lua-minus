@@ -8,10 +8,7 @@ but maybe they will be useful to someone. I originally wanted to make [C--](http
 # What it adds
 Here are all the additions, not good, not bad.
 ```
-ReturnZero() // Returns zero
-ReturnOne() // Returns one
 StuckLoop() // Don't add it to the code, there will be bad consequences
-ReturnNULL() // Returns NULL (or nil in lua)
 RandomSymbols() // A copy of the RandomSymbols function that was in U#
 private name = "Ben" // private instead of local, and public instead of global
 func greet(name)
