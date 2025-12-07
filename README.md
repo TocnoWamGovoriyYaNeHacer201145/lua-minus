@@ -13,7 +13,6 @@ ReturnOne() # Returns one
 StuckLoop() # Don't add it to the code, there will be bad consequences
 ReturnNULL() # Returns NULL (or nil in lua)
 RandomSymbols() # A copy of the RandomSymbols function that was in U#
-show("Bye, world?") # show instead of print, because... Moon is Moon and Earth is Earth
 ```
 
 ### License
