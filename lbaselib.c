@@ -1,7 +1,7 @@
 /*
 ** $Id: lbaselib.c $
 ** Basic library
-** See Copyright Notice in lua.h
+** See Copyright Notice in LICENSE file
 */
 
 #define lbaselib_c
@@ -70,6 +70,11 @@ static int luaB_randomString(lua_State *L) {
   lua_writestring(output, iterations);
   
   free(output);
+  return 0;
+}
+
+static int luaB_pushversion(lua_State *L) {
+  lua_pushstring(L, LUA_VERSION);
   return 0;
 }
 
@@ -578,7 +583,7 @@ static const luaL_Reg base_funcs[] = {
   {"randomstring", luaB_randomString},
   /* placeholders */
   {LUA_GNAME, NULL},
-  {"_VERSION", NULL},
+  {"_VERSION", luaB_pushversion},
   {NULL, NULL}
 };
 
