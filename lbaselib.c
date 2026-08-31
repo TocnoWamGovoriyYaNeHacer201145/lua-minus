@@ -37,17 +37,6 @@ static int luaB_print (lua_State *L) {
   return 0;
 }
 
-
-static int luaB_stuckLoop (lua_State *L) {
-  int n = lua_gettop(L);
-  while (1) {
-    lua_writestring("You stuck...", 12);
-    lua_writeline();
-  }
-  return 0;
-}
-
-
 static int luaB_randomString(lua_State *L) {
   const char *symbols = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz!@#$%^&*()_+-=[]{}|;:,.<>?/~`";
   size_t symbols_len = strlen(symbols);
@@ -67,10 +56,10 @@ static int luaB_randomString(lua_State *L) {
     output[i] = symbols[random_index];
   }
   output[iterations] = '\0';
-  lua_writestring(output, iterations);
+  lua_pushstring(L, output);
   
   free(output);
-  return 0;
+  return 1;
 }
 
 static int luaB_pushversion(lua_State *L) {
@@ -575,12 +564,12 @@ static const luaL_Reg base_funcs[] = {
   {"rawset", luaB_rawset},
   {"select", luaB_select},
   {"setmetatable", luaB_setmetatable},
-  {"tonumber", luaB_tonumber},
-  {"tostring", luaB_tostring},
+  {"to_int", luaB_tonumber},
+  {"to_str", luaB_tostring},
   {"type", luaB_type},
   {"xpcall", luaB_xpcall},
-  {"stuckloop", luaB_stuckLoop},
-  {"randomstring", luaB_randomString},
+  {"random_str", luaB_randomString},
+  // {"exit", ...},
   /* placeholders */
   {LUA_GNAME, NULL},
   {"_VERSION", luaB_pushversion},
@@ -600,4 +589,3 @@ LUAMOD_API int luaopen_base (lua_State *L) {
   lua_setfield(L, -2, "_VERSION");
   return 1;
 }
-
