@@ -37,7 +37,7 @@ static int luaB_print (lua_State *L) {
   return 0;
 }
 
-static int luaB_randomString(lua_State *L) {
+static int luam_random_str(lua_State *L) {
   const char *symbols = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz!@#$%^&*()_+-=[]{}|;:,.<>?/~`";
   size_t symbols_len = strlen(symbols);
   static int seeded = 0;
@@ -112,7 +112,7 @@ static const char *b_str2int (const char *s, unsigned base, lua_Integer *pn) {
 }
 
 
-static int luaB_tonumber (lua_State *L) {
+static int luam_to_int (lua_State *L) {
   if (lua_isnoneornil(L, 2)) {  /* standard conversion? */
     if (lua_type(L, 1) == LUA_TNUMBER) {  /* already a number? */
       lua_settop(L, 1);  /* yes; return it */
@@ -537,10 +537,22 @@ static int luaB_xpcall (lua_State *L) {
 }
 
 
-static int luaB_tostring (lua_State *L) {
+static int luam_to_str (lua_State *L) {
   luaL_checkany(L, 1);
   luaL_tolstring(L, 1, NULL);
   return 1;
+}
+
+static int luam_exit (lua_State *L) {
+  int status;
+  if (lua_isboolean(L, 1))
+    status = (lua_toboolean(L, 1) ? EXIT_SUCCESS : EXIT_FAILURE);
+  else
+    status = (int)luaL_optinteger(L, 1, EXIT_SUCCESS);
+  if (lua_toboolean(L, 2))
+    lua_close(L);
+  if (L) exit(status);  /* 'if' to avoid warnings for unreachable 'return' */
+  return 0;
 }
 
 
@@ -564,12 +576,12 @@ static const luaL_Reg base_funcs[] = {
   {"rawset", luaB_rawset},
   {"select", luaB_select},
   {"setmetatable", luaB_setmetatable},
-  {"to_int", luaB_tonumber},
-  {"to_str", luaB_tostring},
+  {"to_int", luam_to_int},
+  {"to_str", luam_to_str},
   {"type", luaB_type},
   {"xpcall", luaB_xpcall},
-  {"random_str", luaB_randomString},
-  // {"exit", ...},
+  {"random_str", luam_random_str},
+  {"exit", luam_exit},
   /* placeholders */
   {LUA_GNAME, NULL},
   {"_VERSION", luaB_pushversion},
@@ -589,3 +601,4 @@ LUAMOD_API int luaopen_base (lua_State *L) {
   lua_setfield(L, -2, "_VERSION");
   return 1;
 }
+
