@@ -8,10 +8,12 @@ but maybe they will be useful to someone. I originally wanted to make [C--](http
 # What it adds
 Here are all the additions, not good, not bad.
 ```
--- stuckloop() Don't add it to the code, there will be bad consequences
-randomstring() -- A copy of the RandomSymbols function that was in U#
-private name = "Ben" -- private instead of local, and public instead of global
-func greet(name)
+print(random_str()) -- Just a bunch of random symbols
+
+pub lang = "Lua-"
+
+func greet_ben()
+  loc name = "Ben"
   print("Hello, " ..name)
 end
 ```
