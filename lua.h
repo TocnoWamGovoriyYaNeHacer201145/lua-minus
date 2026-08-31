@@ -13,7 +13,7 @@
 #include <stddef.h>
 
 
-#define LUA_COPYRIGHT	LUA_RELEASE "  Copyright (C) 2025 TocnoWamGovoriyYaNeHacer201145"
+#define LUA_COPYRIGHT	LUA_RELEASE "  Copyright (C) 2025-2026 TocnoWamGovoriyYaNeHacer201145"
 #define LUA_AUTHORS	"R. Ierusalimschy, L. H. de Figueiredo, W. Celes, TocnoWamGovoriyYaNeHacer201145"
 
 
